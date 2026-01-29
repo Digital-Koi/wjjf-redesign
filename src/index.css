@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-wjjf-red: #E31B23;
-  --color-wjjf-dark: #B9151B;
+  --color-wjjf-blue: #003087;
+  /* Official Blue shade */
+  --color-wjjf-accent: #E31B23;
+  /* Original Red */
   --font-display: "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
 }
 
 :root {
-  --primary-red: #E31B23;
-  /* WJJF Red */
-  --primary-dark: #B9151B;
+  --primary-blue: #003087;
+  --accent-red: #E31B23;
   --accent-gold: #FFC107;
   --text-main: #1F2937;
   --text-light: #4B5563;
@@ -35,15 +36,19 @@
   }
 
   .btn-primary {
-    @apply bg-[#E31B23] text-white hover:bg-[#B9151B] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-500/30;
+    @apply bg-[#003087] text-white hover:bg-[#00205B] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-900/30;
   }
 
   .btn-secondary {
-    @apply bg-white text-gray-900 border-2 border-gray-100 hover:border-[#E31B23] hover:text-[#E31B23];
+    @apply bg-white text-gray-900 border-2 border-gray-100 hover:border-[#003087] hover:text-[#003087];
   }
 
   .card {
     @apply bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-6 md:px-12;
   }
 }
 

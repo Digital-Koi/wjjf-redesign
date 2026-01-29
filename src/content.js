@@ -6,7 +6,7 @@ export const content = {
         bgImage: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80"
     },
     stats: [
-        { value: 80, label: "Clubs", suffix: "+" }, // Added + to clubs as usually it's "80+"
+        { value: 80, label: "Clubs", suffix: "+" },
         { value: 45, label: "Years Experience", suffix: "+" },
         { value: 4250, label: "Members", suffix: "" },
         { value: 100, label: "Enjoyment", suffix: "%" }
@@ -52,8 +52,13 @@ export const content = {
     },
     kids: {
         title: "Kids Ju-Jitsu",
-        description: "One of the fastest-growing sports in the world. With great physical benefits and discipline, it's a great idea to get started young.",
+        description: "One of the fastest-growing martial arts in the world. With great physical benefits and discipline, it's a great idea to get started young. We provide a safe and fun environment for children to learn.",
         cta: "Enquire Today"
+    },
+    adults: {
+        title: "Adult Ju-Jitsu",
+        description: "Whether you want to get fit, learn self-defence, our adult classes cater to all levels. Join a supportive community and challenge yourself.",
+        cta: "Start Training"
     },
     contact: {
         email: "atoney@jujitsuireland.com",

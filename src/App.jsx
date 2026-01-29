@@ -40,7 +40,7 @@ function App() {
       <Hero />
 
       {/* Animated Stats Bar */}
-      <div className="bg-[#E31B23] text-white py-16 relative overflow-hidden">
+      <div className="bg-[#003087] text-white py-8 relative overflow-hidden">
         {/* Pattern overlay */}
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
 
@@ -62,7 +62,7 @@ function App() {
       <Section id="about">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1">
-            <span className="text-[#E31B23] font-bold tracking-wider uppercase mb-3 block text-sm">About Us</span>
+            <span className="text-[#003087] font-bold tracking-wider uppercase mb-3 block text-sm">About Us</span>
             <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">{content.about.title}</h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               {content.about.description}
@@ -73,7 +73,7 @@ function App() {
                 <Shield className="text-[#E31B23] shrink-0 mt-1" />
                 <div>
                   <h4 className="font-bold text-gray-900">Comprehensive System</h4>
-                  <p className="text-sm text-gray-600">Kicking, punching, throws, and locks.</p>
+                  <p className="text-sm text-gray-600">Kicking, punching, throws, locks and ground work.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
@@ -104,7 +104,7 @@ function App() {
       {/* Features Grid */}
       <Section id="features" dark>
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-[#E31B23] font-bold tracking-wider uppercase mb-2 block text-sm">Explore</span>
+          <span className="text-[#003087] font-bold tracking-wider uppercase mb-2 block text-sm">Explore</span>
           <h2 className="text-3xl font-bold mb-4">Everything You Need</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
@@ -137,7 +137,7 @@ function App() {
 
           <div className="grid md:grid-cols-2">
             <div className="p-12 md:p-16 relative z-10">
-              <span className="text-[#E31B23] font-bold tracking-wider uppercase mb-2 block text-sm">Benefits</span>
+              <span className="text-[#003087] font-bold tracking-wider uppercase mb-2 block text-sm">Benefits</span>
               <h2 className="text-3xl md:text-4xl font-bold mb-8">{content.benefits.title}</h2>
               <div className="space-y-8">
                 {content.benefits.items.map((benefit, idx) => (
@@ -165,23 +165,40 @@ function App() {
         </div>
       </Section>
 
-      {/* Kids Section */}
-      <Section id="kids" dark>
+      {/* Kids & Adults Section */}
+      <Section id="classes" dark>
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-center gap-12 bg-white rounded-3xl p-8 md:p-12 border border-gray-100 shadow-lg">
-            <div className="md:w-1/2">
-              <span className="text-[#E31B23] font-bold tracking-wider uppercase mb-2 block text-sm">Future Champions</span>
-              <h2 className="text-4xl font-bold mb-6 text-gray-900">{content.kids.title}</h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">{content.kids.description}</p>
-              <a href="#contact" className="btn btn-primary px-8 py-4 text-lg w-full md:w-auto">
-                {content.kids.cta}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Kids Card */}
+            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg flex flex-col items-start relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+              <span className="text-blue-600 font-bold tracking-wider uppercase mb-2 block text-sm relative z-10"> Ages 4-18</span>
+              <h2 className="text-3xl font-bold mb-4 text-gray-900 relative z-10">{content.kids.title}</h2>
+              <p className="text-gray-600 mb-8 leading-relaxed relative z-10 flex-grow">{content.kids.description}</p>
+
+              <div className="w-full h-48 rounded-2xl overflow-hidden mb-6 relative z-10">
+                <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?auto=format&fit=crop&q=80" alt="Kids Juice" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+
+              <a href="#contact" className="btn bg-blue-600 text-white hover:bg-blue-700 w-full relative z-10">
+                {content.kids.cta} <ChevronRight size={16} />
               </a>
             </div>
-            <div className="md:w-1/2">
-              <div className="grid grid-cols-2 gap-4">
-                <img src="https://images.unsplash.com/photo-1564414169766-38bf64dc9352?auto=format&fit=crop&q=80" alt="Kids Training" className="rounded-2xl w-full h-48 object-cover" />
-                <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?auto=format&fit=crop&q=80" alt="Kids Fun" className="rounded-2xl w-full h-48 object-cover mt-8" />
+
+            {/* Adults Card */}
+            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-lg flex flex-col items-start relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110" />
+              <span className="text-[#E31B23] font-bold tracking-wider uppercase mb-2 block text-sm relative z-10">Ages 18+</span>
+              <h2 className="text-3xl font-bold mb-4 text-gray-900 relative z-10">{content.adults.title}</h2>
+              <p className="text-gray-600 mb-8 leading-relaxed relative z-10 flex-grow">{content.adults.description}</p>
+
+              <div className="w-full h-48 rounded-2xl overflow-hidden mb-6 relative z-10">
+                <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?auto=format&fit=crop&q=80" alt="Adult Ju-Jitsu" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
               </div>
+
+              <a href="#contact" className="btn bg-[#E31B23] text-white hover:bg-[#B9151B] w-full relative z-10 transition-colors duration-300">
+                {content.adults.cta} <ChevronRight size={16} />
+              </a>
             </div>
           </div>
         </div>

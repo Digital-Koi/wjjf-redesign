@@ -41,7 +41,7 @@ export default function Hero() {
                         <a href="#find-club" className="btn btn-primary text-lg px-8 py-4 w-full sm:w-auto min-w-[200px]">
                             Find a Club <ChevronRight size={20} />
                         </a>
-                        <a href="#about" className="btn btn-secondary bg-white/10 text-white border-white/30 hover:bg-white hover:text-[#E31B23] hover:border-white w-full sm:w-auto min-w-[200px] backdrop-blur-sm">
+                        <a href="#about" className="btn btn-secondary bg-white/10 text-white border-white/30 hover:bg-white hover:text-[#003087] hover:border-white w-full sm:w-auto min-w-[200px] backdrop-blur-sm">
                             Learn More
                         </a>
                     </div>

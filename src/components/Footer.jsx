@@ -15,10 +15,10 @@ export default function Footer() {
                             The official home of Ju-Jitsu in Ireland. Teaching discipline, respect, and self-defense across Northern Ireland.
                         </p>
                         <div className="flex gap-4">
-                            <a href={content.contact.socials.facebook} className="text-gray-400 hover:text-[#E31B23] transition-colors"><Facebook size={20} /></a>
-                            <a href={content.contact.socials.instagram} className="text-gray-400 hover:text-[#E31B23] transition-colors"><Instagram size={20} /></a>
-                            <a href={content.contact.socials.twitter} className="text-gray-400 hover:text-[#E31B23] transition-colors"><Twitter size={20} /></a>
-                            <a href={content.contact.socials.youtube} className="text-gray-400 hover:text-[#E31B23] transition-colors"><Youtube size={20} /></a>
+                            <a href={content.contact.socials.facebook} className="text-[#E31B23] hover:text-white transition-colors"><Facebook size={20} /></a>
+                            <a href={content.contact.socials.instagram} className="text-[#E31B23] hover:text-white transition-colors"><Instagram size={20} /></a>
+                            <a href={content.contact.socials.twitter} className="text-[#E31B23] hover:text-white transition-colors"><Twitter size={20} /></a>
+                            <a href={content.contact.socials.youtube} className="text-[#E31B23] hover:text-white transition-colors"><Youtube size={20} /></a>
                         </div>
                     </div>
 

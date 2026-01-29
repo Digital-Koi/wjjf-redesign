@@ -16,9 +16,9 @@ export default function Navbar() {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
-                        <a href="#about" className="font-medium hover:text-[#E31B23]">What We Do</a>
-                        <a href="#find-club" className="font-medium hover:text-[#E31B23]">Find a Club</a>
-                        <a href="#news" className="font-medium hover:text-[#E31B23]">News</a>
+                        <a href="#about" className="font-medium hover:text-[#003087]">What We Do</a>
+                        <a href="#find-club" className="font-medium hover:text-[#003087]">Find a Club</a>
+                        <a href="#news" className="font-medium hover:text-[#003087]">News</a>
                         <a href="#contact" className="btn btn-primary">
                             Join Now
                         </a>
