@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Users, Calendar, Trophy, ChevronRight, Star, Shield, Activity, MapPin } from 'lucide-react';
 import Hero from '../components/Hero';
 import CountUp from '../components/CountUp';
@@ -25,9 +26,9 @@ const FeatureCard = ({ title, description, icon: Icon, link }) => (
         </div>
         <h3 className="text-xl font-bold mb-3 text-gray-900">{title}</h3>
         <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
-        <a href={link} className="inline-flex items-center text-[#E31B23] font-semibold hover:gap-2 transition-all group-hover:text-[#B9151B]">
+        <Link to={link} className="inline-flex items-center text-[#E31B23] font-semibold hover:gap-2 transition-all group-hover:text-[#B9151B]">
             Read More <ChevronRight size={16} />
-        </a>
+        </Link>
     </motion.div>
 );
 
@@ -82,7 +83,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <a href="#about" className="btn btn-primary">Learn More</a>
+                        <Link to="/about" className="btn btn-primary">Learn More</Link>
                     </div>
                     <div className="order-1 md:order-2 relative">
                         <div className="aspect-[4/3] bg-gray-900 rounded-2xl overflow-hidden shadow-2xl relative">
@@ -134,7 +135,7 @@ export default function Home() {
 
                     <div className="grid md:grid-cols-2">
                         <div className="p-12 md:p-16 relative z-10">
-                            <span className="text-[#003087] font-bold tracking-wider uppercase mb-2 block text-sm">Benefits</span>
+                            <span className="text-[#E31B23] font-bold tracking-wider uppercase mb-2 block text-sm">Benefits</span>
                             <h2 className="text-3xl md:text-4xl font-bold mb-8">{content.benefits.title}</h2>
                             <div className="space-y-8">
                                 {content.benefits.items.map((benefit, idx) => (

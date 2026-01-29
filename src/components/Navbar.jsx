@@ -16,7 +16,7 @@ export default function Navbar() {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
-                        <Link to="/#about" className="font-medium hover:text-[#003087]">What We Do</Link>
+                        <Link to="/about" className="font-medium hover:text-[#003087]">What We Do</Link>
                         <Link to="/find-a-club" className="font-medium hover:text-[#003087]">Find a Club</Link>
                         <Link to="#news" className="font-medium hover:text-[#003087]">News</Link>
                         <a href="#contact" className="btn btn-primary">
@@ -38,7 +38,7 @@ export default function Navbar() {
             {isOpen && (
                 <div className="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
                     <div className="flex flex-col p-4 gap-4">
-                        <Link to="/#about" className="text-lg font-medium" onClick={() => setIsOpen(false)}>What We Do</Link>
+                        <Link to="/about" className="text-lg font-medium" onClick={() => setIsOpen(false)}>What We Do</Link>
                         <Link to="/find-a-club" className="text-lg font-medium" onClick={() => setIsOpen(false)}>Find a Club</Link>
                         <Link to="#news" className="text-lg font-medium" onClick={() => setIsOpen(false)}>News</Link>
                         <a href="#contact" className="btn btn-primary w-full text-center" onClick={() => setIsOpen(false)}>Join Now</a>
