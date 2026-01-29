@@ -58,43 +58,17 @@ export default function FindClub() {
         setSearchLocation('');
 
         try {
-            let query = postcode.trim().toUpperCase();
+            let query = postcode.trim();
 
-            // 1. Format Postcode: "BT436TH" -> "BT43 6TH"
-            // Regex detects UK postcode format with optional space
-            const postcodeRegex = /^([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})$/;
-            const match = query.match(postcodeRegex);
+            // Northern Ireland Bounding Box (approx) for town names
+            // Left (West): -8.2, Top (North): 55.4, Right (East): -5.4, Bottom (South): 54.0
+            const viewbox = '&viewbox=-8.2,55.3,-5.4,54.0&bounded=1';
 
-            let isPostcode = false;
-            if (match) {
-                // Formatting to standard format: "BT43 6TH"
-                query = `${match[1]} ${match[2]}`;
-                isPostcode = true;
-            }
-
-            // 2. Fetch Logic
-            // If it IS a postcode, search strictly for that.
-            // If it is NOT a postcode (e.g. "Toome"), use the NI viewbox to prevent finding "Toome, Ireland".
-
-            let url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=gb,ie&limit=1`;
-
-            if (!isPostcode) {
-                // Northern Ireland Bounding Box (approx) for town names
-                const viewbox = '&viewbox=-8.2,55.3,-5.4,54.0&bounded=1';
-                url += viewbox;
-            }
+            // We search strictly within Northern Ireland viewbox
+            let url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=gb,ie&limit=1${viewbox}`;
 
             let response = await fetch(url);
             let data = await response.json();
-
-            // 3. Postcode Fallback: If exact postcode "BT43 6TH" not found, try "BT43" sector
-            if (isPostcode && (!data || data.length === 0)) {
-                console.log("Exact postcode not found, retrying with sector:", match[1]);
-                const sectorQuery = match[1]; // e.g. "BT43"
-                url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(sectorQuery)}&countrycodes=gb,ie&limit=1`;
-                response = await fetch(url);
-                data = await response.json();
-            }
 
             if (data && data.length > 0) {
                 const result = data[0];
@@ -122,7 +96,7 @@ export default function FindClub() {
                     setMapZoom(13); // Zoom in on the closest club
                 }
             } else {
-                setError('Location not found in Northern Ireland. Please try a valid Postcode or Town.');
+                setError('Location not found in Northern Ireland. Please try a valid Town or City.');
             }
         } catch (err) {
             console.error(err);
@@ -138,15 +112,15 @@ export default function FindClub() {
             <div className="bg-[#003087] text-white py-16 text-center px-4">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Find a Club Near You</h1>
                 <p className="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
-                    Explore our network of over 80 clubs across Northern Ireland. Search by postcode to find your nearest dojo.
+                    Explore our network of over 80 clubs across Northern Ireland. Search by town to find your nearest dojo.
                 </p>
 
                 {/* Search Bar */}
                 <form onSubmit={handleSearch} className="max-w-md mx-auto relative flex items-center">
                     <input
                         type="text"
-                        placeholder="Enter Postcode or Town (e.g. Toome)"
-                        className="w-full pl-6 pr-14 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-500/30 shadow-lg text-lg"
+                        placeholder="Enter Town or City (e.g. Ballymena)"
+                        className="w-full pl-6 pr-14 py-4 rounded-full bg-white text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-500/30 shadow-lg text-lg"
                         value={postcode}
                         onChange={(e) => setPostcode(e.target.value)}
                     />
