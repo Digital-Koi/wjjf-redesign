@@ -18,14 +18,13 @@ export default function About() {
             <div className="container mx-auto px-4 py-16">
                 <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
                     <div className="order-2 md:order-1">
-                        <h2 className="text-3xl font-bold text-[#003087] mb-6">World Ju-Jitsu Federation Ireland</h2>
+                        <h2 className="text-3xl font-bold text-[#003087] mb-6">We Educate</h2>
                         <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                            World Ju Jitsu Federation Ireland is an overarching organisation that oversees 80+ clubs throughout Northern Ireland.
-                            We are dedicated to the practice and teaching of traditional and modern Ju-Jitsu.
+                            Our system has evolved from a combination of old Ju Jitsu styles which the Federation’s Founder, Soke Robert Clark, researched and trained in for many years.
+                            He took the best of everything and developed it into a complete training syllabus with belt grades.
                         </p>
                         <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                            The system has evolved from a combination of old Ju Jitsu styles and has developed over the years into the most
-                            comprehensive self-defence system. It combines elements of:
+                            With his permission, David Toney developed the system further writing three training manuals, the first of which Soke Clark wrote a glowing endorsement for.
                         </p>
                         <ul className="grid grid-cols-2 gap-4 mt-4">
                             <li className="flex items-center gap-2 text-gray-700 font-medium">
@@ -54,26 +53,25 @@ export default function About() {
                 </div>
 
                 {/* Values / Pillars */}
-                <div className="grid md:grid-cols-3 gap-8 mb-20">
+                <div className="grid md:grid-cols-2 gap-8 mb-20">
                     <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-all">
                         <Shield className="text-[#E31B23] mb-4" size={40} />
-                        <h3 className="text-xl font-bold text-[#003087] mb-3">Self Defence</h3>
-                        <p className="text-gray-600">
-                            Our primary focus is practical, effective self-defence that works in real-world situations for people of all sizes and abilities.
+                        <h3 className="text-xl font-bold text-[#003087] mb-3">Qualified Instructors</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                            Senior Club Instructors have been vetted by Access NI, hold full professional training qualifications, and Public Indemnity insurance, and each club must have a qualified first aider on hand at all times.
                         </p>
-                    </div>
-                    <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-all">
-                        <Target className="text-[#E31B23] mb-4" size={40} />
-                        <h3 className="text-xl font-bold text-[#003087] mb-3">Discipline</h3>
-                        <p className="text-gray-600">
-                            We foster clear thinking, respect, and mental fortitude. A black belt is not just something you wear, it becomes part of who you are.
+                        <p className="text-gray-600 leading-relaxed mt-4">
+                            We are ahead in our field by ensuring our coaches are equipped to meet the needs of those with varying ability and disability and those with learning difficulties. All of our affiliated clubs are recognised by the Governing Body for the Sport in Northern Ireland, and as such follow their policies and procedures.
                         </p>
                     </div>
                     <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-all">
                         <Users className="text-[#E31B23] mb-4" size={40} />
-                        <h3 className="text-xl font-bold text-[#003087] mb-3">Community</h3>
-                        <p className="text-gray-600">
-                            With over 4,000 members, you join a massive family. We train together, grade together, and support each other's growth.
+                        <h3 className="text-xl font-bold text-[#003087] mb-3">Next Generation</h3>
+                        <p className="text-gray-600 leading-relaxed">
+                            We work in primary schools providing after-schools clubs and self defence courses. We run education days and self defence and safety training within schools and colleges.
+                        </p>
+                        <p className="text-gray-600 leading-relaxed mt-4">
+                            We have an ever increasing awareness of the difficulties facing young people today and make the most of our opportunity to support them with, not only their physical health, but also their emotional wellbeing. We are more than just a Martial arts group – we are a community!
                         </p>
                     </div>
                 </div>
