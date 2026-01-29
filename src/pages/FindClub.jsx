@@ -58,15 +58,43 @@ export default function FindClub() {
         setSearchLocation('');
 
         try {
-            // Prepare query: if it looks like a postcode (starts with BT), use as is.
-            // Otherwise, append ", Northern Ireland" to guide Nominatim.
-            let query = postcode.trim();
-            // Northern Ireland Bounding Box (approx)
-            // Left (West): -8.2, Top (North): 55.4, Right (East): -5.4, Bottom (South): 54.0
-            const viewbox = '&viewbox=-8.2,55.3,-5.4,54.0&bounded=1';
+            let query = postcode.trim().toUpperCase();
 
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=gb,ie&limit=1${viewbox}`);
-            const data = await response.json();
+            // 1. Format Postcode: "BT436TH" -> "BT43 6TH"
+            // Regex detects UK postcode format with optional space
+            const postcodeRegex = /^([A-Z]{1,2}[0-9][0-9A-Z]?)\s*([0-9][A-Z]{2})$/;
+            const match = query.match(postcodeRegex);
+
+            let isPostcode = false;
+            if (match) {
+                // Formatting to standard format: "BT43 6TH"
+                query = `${match[1]} ${match[2]}`;
+                isPostcode = true;
+            }
+
+            // 2. Fetch Logic
+            // If it IS a postcode, search strictly for that.
+            // If it is NOT a postcode (e.g. "Toome"), use the NI viewbox to prevent finding "Toome, Ireland".
+
+            let url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=gb,ie&limit=1`;
+
+            if (!isPostcode) {
+                // Northern Ireland Bounding Box (approx) for town names
+                const viewbox = '&viewbox=-8.2,55.3,-5.4,54.0&bounded=1';
+                url += viewbox;
+            }
+
+            let response = await fetch(url);
+            let data = await response.json();
+
+            // 3. Postcode Fallback: If exact postcode "BT43 6TH" not found, try "BT43" sector
+            if (isPostcode && (!data || data.length === 0)) {
+                console.log("Exact postcode not found, retrying with sector:", match[1]);
+                const sectorQuery = match[1]; // e.g. "BT43"
+                url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(sectorQuery)}&countrycodes=gb,ie&limit=1`;
+                response = await fetch(url);
+                data = await response.json();
+            }
 
             if (data && data.length > 0) {
                 const result = data[0];
