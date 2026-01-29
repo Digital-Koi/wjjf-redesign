@@ -46,6 +46,8 @@ export default function FindClub() {
         return R * c; // Distance in km
     };
 
+    const [searchLocation, setSearchLocation] = useState('');
+
     const handleSearch = async (e) => {
         e.preventDefault();
         if (!postcode.trim()) return;
@@ -53,16 +55,26 @@ export default function FindClub() {
         setLoading(true);
         setError('');
         setClosestClub(null);
+        setSearchLocation('');
 
         try {
-            // Geocode the postcode/town using Nominatim (OpenStreetMap)
-            // Restricting to GB and IE to focus to the region
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(postcode)}&countrycodes=gb,ie&limit=1`);
+            // Prepare query: if it looks like a postcode (starts with BT), use as is.
+            // Otherwise, append ", Northern Ireland" to guide Nominatim.
+            let query = postcode.trim();
+            // Northern Ireland Bounding Box (approx)
+            // Left (West): -8.2, Top (North): 55.4, Right (East): -5.4, Bottom (South): 54.0
+            const viewbox = '&viewbox=-8.2,55.3,-5.4,54.0&bounded=1';
+
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=gb,ie&limit=1${viewbox}`);
             const data = await response.json();
 
             if (data && data.length > 0) {
-                const userLat = parseFloat(data[0].lat);
-                const userLon = parseFloat(data[0].lon);
+                const result = data[0];
+                const userLat = parseFloat(result.lat);
+                const userLon = parseFloat(result.lon);
+
+                // Set the friendly name of the location found
+                setSearchLocation(result.display_name.split(',')[0]);
 
                 // Calculate distance to all clubs
                 let minDistance = Infinity;
@@ -82,7 +94,7 @@ export default function FindClub() {
                     setMapZoom(13); // Zoom in on the closest club
                 }
             } else {
-                setError('Location not found. Please try a valid Postcode or Town.');
+                setError('Location not found in Northern Ireland. Please try a valid Postcode or Town.');
             }
         } catch (err) {
             console.error(err);
@@ -105,7 +117,7 @@ export default function FindClub() {
                 <form onSubmit={handleSearch} className="max-w-md mx-auto relative flex items-center">
                     <input
                         type="text"
-                        placeholder="Enter Postcode or Town (e.g. BT43 6HB)"
+                        placeholder="Enter Postcode or Town (e.g. Toome)"
                         className="w-full pl-6 pr-14 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-500/30 shadow-lg text-lg"
                         value={postcode}
                         onChange={(e) => setPostcode(e.target.value)}
@@ -131,19 +143,17 @@ export default function FindClub() {
                 {/* Results Sidebar (Conditional) */}
                 {closestClub && (
                     <div className="lg:w-1/3 bg-white rounded-3xl p-6 shadow-xl border border-gray-100 h-fit animate-fade-in">
-                        <div className="flex items-center gap-2 mb-4 text-[#003087]">
-                            <Navigation size={24} className="text-[#E31B23]" />
-                            <h2 className="text-xl font-bold">Closest Club Found</h2>
+                        <div className="mb-6 pb-6 border-b border-gray-100">
+                            <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Closest to {searchLocation}:</h2>
+                            <h3 className="text-2xl font-bold text-[#003087]">{closestClub.name}</h3>
+                            <span className="inline-block bg-green-100 text-green-700 font-bold px-3 py-1 rounded-full text-sm mt-2">
+                                {closestClub.distance} km away
+                            </span>
                         </div>
 
                         <div className="bg-gray-50 rounded-xl overflow-hidden mb-6">
-                            <img src={closestClub.image} alt={closestClub.name} className="w-full h-48 object-cover" />
+                            <img src={closestClub.image} alt={closestClub.name} className="w-full h-48 object-contain bg-white" />
                         </div>
-
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">{closestClub.name}</h3>
-                        <span className="inline-block bg-green-100 text-green-700 font-semibold px-3 py-1 rounded-full text-sm mb-4">
-                            {closestClub.distance} km away
-                        </span>
 
                         <div className="space-y-4 mb-6">
                             <div className="flex items-start gap-3 text-gray-600">
@@ -169,7 +179,7 @@ export default function FindClub() {
                             </div>
                         </div>
 
-                        <a href={`https://www.google.com/maps/dir/?api=1&destination=${closestClub.lat},${closestClub.lng}`} target="_blank" rel="noreferrer" className="btn btn-primary w-full">
+                        <a href={`https://www.google.com/maps/dir/?api=1&destination=${closestClub.lat},${closestClub.lng}`} target="_blank" rel="noreferrer" className="btn btn-primary w-full text-center block">
                             Get Directions
                         </a>
                     </div>
