@@ -40,8 +40,8 @@ export default function FindClub() {
                         {clubs.map((club) => (
                             <Marker key={club.id} position={[club.lat, club.lng]}>
                                 <Popup className="custom-popup">
-                                    <div className="min-w-[200px]">
-                                        <img src={club.image} alt={club.coach} className="w-full h-32 object-cover rounded-t-lg mb-3" />
+                                    <div className="min-w-[250px]">
+                                        <img src={club.image} alt={club.coach} className="w-full h-48 object-contain bg-gray-50 rounded-lg mb-3" />
                                         <h3 className="font-bold text-lg text-[#003087] mb-1">{club.name}</h3>
 
                                         <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
