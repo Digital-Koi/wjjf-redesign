@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-wjjf-red: #E31B23;
+  --color-wjjf-dark: #B9151B;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --primary-red: #E31B23;
+  /* WJJF Red */
+  --primary-dark: #B9151B;
+  --accent-gold: #FFC107;
+  --text-main: #1F2937;
+  --text-light: #4B5563;
+  --bg-white: #FFFFFF;
+  --bg-off-white: #F3F4F6;
+  --bg-dark: #111827;
+
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles are handled by tailwindcss v4 automatically but we can add layers */
+@layer base {
+  body {
+    font-family: var(--font-main);
+    @apply text-gray-900 bg-white;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 transform shadow-sm;
+  }
+
+  .btn-primary {
+    @apply bg-[#E31B23] text-white hover:bg-[#B9151B] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-red-500/30;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-900 border-2 border-gray-100 hover:border-[#E31B23] hover:text-[#E31B23];
+  }
+
+  .card {
+    @apply bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
